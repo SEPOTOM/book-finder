@@ -12,6 +12,9 @@ const App = () => {
       <main>
         <BooksList />
       </main>
+      <footer>
+        <p>© 2024 Book Finder</p>
+      </footer>
     </Provider>
   );
 };
