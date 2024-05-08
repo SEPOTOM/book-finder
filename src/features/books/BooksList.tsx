@@ -1,12 +1,31 @@
+import {
+  createSearchedBooksSelectors,
+  useSearchBooksQuery,
+} from './booksSlice';
+
+import { useAppSelector } from '../../common/hooks';
+
 import BookItem from './BookItem';
 
-const BooksList = () => {
-  const booksIds: string[] = [];
+import { BooksListProps } from './types';
+
+const BooksList = ({ searchQuery }: BooksListProps) => {
+  useSearchBooksQuery(searchQuery);
+
+  const { selectSearchedBooksIds } = createSearchedBooksSelectors(searchQuery);
+
+  const booksIds = useAppSelector(selectSearchedBooksIds);
 
   return (
     <ul>
       {booksIds.map((bookId) => {
-        return <BookItem bookId={bookId} key={bookId} />;
+        return (
+          <BookItem
+            bookId={String(bookId)}
+            searchQuery={searchQuery}
+            key={bookId}
+          />
+        );
       })}
     </ul>
   );
