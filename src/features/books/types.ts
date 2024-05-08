@@ -9,3 +9,7 @@ export interface BookResponse {
   publish_date: string[];
   title: string;
 }
+
+export interface BookItemProps {
+  bookId: string;
+}
