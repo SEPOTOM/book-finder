@@ -2,13 +2,15 @@ import { Provider } from 'react-redux';
 
 import { store } from './app/store';
 
-import Header from './app/Header';
+import SearchBooksForm from './features/books/SearchBooksForm';
 import BooksList from './features/books/BooksList';
 
 const App = () => {
   return (
     <Provider store={store}>
-      <Header />
+      <header>
+        <SearchBooksForm />
+      </header>
       <main>
         <BooksList />
       </main>
