@@ -17,7 +17,7 @@ const App = () => {
           onSearchQueryChange={(newQuery) => setSearchQuery(newQuery)}
         />
       </header>
-      <main>
+      <main className="grow">
         {searchQuery !== '' && <BooksList searchQuery={searchQuery} />}
       </main>
       <footer>

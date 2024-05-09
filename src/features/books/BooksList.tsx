@@ -17,7 +17,7 @@ const BooksList = ({ searchQuery }: BooksListProps) => {
   const booksIds = useAppSelector(selectSearchedBooksIds);
 
   return (
-    <ul>
+    <ul className="flex flex-wrap">
       {booksIds.map((bookId) => {
         return (
           <BookItem
