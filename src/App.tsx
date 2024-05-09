@@ -11,7 +11,7 @@ const App = () => {
 
   return (
     <Provider store={store}>
-      <header>
+      <header className="flex justify-center py-12">
         <SearchBooksForm
           searchQuery={searchQuery}
           onSearchQueryChange={(newQuery) => setSearchQuery(newQuery)}
