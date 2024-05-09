@@ -54,6 +54,10 @@ module.exports = {
       typescript: {
         alwaysTryTypes: true,
       },
+      alias: {
+        map: [['', './public']],
+        extensions: ['.tsx'],
+      },
     },
   },
   ignorePatterns: ['dist', '.eslintrc.cjs'],
