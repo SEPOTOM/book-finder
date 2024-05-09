@@ -20,8 +20,8 @@ const App = () => {
       <main className="grow">
         {searchQuery !== '' && <BooksList searchQuery={searchQuery} />}
       </main>
-      <footer>
-        <p>© 2024 Book Finder</p>
+      <footer className="flex justify-center py-8">
+        <p className="text-lg italic">© 2024 Book Finder</p>
       </footer>
     </Provider>
   );
