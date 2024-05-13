@@ -16,7 +16,7 @@ export const extendedApiSlice = apiSlice.injectEndpoints({
   endpoints: (builder) => ({
     searchBooks: builder.query({
       query: (searchQuery) =>
-        `?q=${encodeURIComponent(searchQuery)}&fields=title,author_name,cover_edition_key,key,publish_date&limit=12`,
+        `?q=${encodeURIComponent(searchQuery)}&fields=title,author_name,cover_edition_key,key,publish_date,id_amazon,id_librivox,id_google&limit=12`,
       transformResponse: (responseData: SearchBooksResponse) =>
         booksAdapter.setAll(initialState, responseData.docs),
     }),

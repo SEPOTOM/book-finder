@@ -8,6 +8,9 @@ export interface BookResponse {
   key: string;
   publish_date?: string[];
   title?: string;
+  id_amazon?: string[];
+  id_google?: string[];
+  id_librivox?: string[];
 }
 
 export interface BookItemProps {
@@ -22,4 +25,10 @@ export interface BooksListProps {
 export interface SearchBooksFormProps {
   searchQuery: string;
   onSearchQueryChange: (newQuery: string) => void;
+}
+
+export interface ExternalLinksListProps {
+  amazonBooksId: string;
+  googleBooksId: string;
+  libriVoxId: string;
 }

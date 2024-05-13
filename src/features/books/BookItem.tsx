@@ -2,6 +2,8 @@ import { createSearchedBooksSelectors } from './booksSlice';
 
 import { useAppSelector } from '../../common/hooks';
 
+import ExternalLinksList from './ExternalLinksList';
+
 import { BookItemProps } from './types';
 
 import ImagePlaceholderSrc from '/img-placeholder.png';
@@ -9,8 +11,15 @@ import ImagePlaceholderSrc from '/img-placeholder.png';
 const BookItem = ({ bookId, searchQuery }: BookItemProps) => {
   const { selectSearchedBookById } = createSearchedBooksSelectors(searchQuery);
 
-  const { cover_edition_key, title, author_name, publish_date } =
-    useAppSelector((state) => selectSearchedBookById(state, bookId));
+  const {
+    cover_edition_key,
+    title,
+    author_name,
+    publish_date,
+    id_amazon,
+    id_google,
+    id_librivox,
+  } = useAppSelector((state) => selectSearchedBookById(state, bookId));
 
   const noImageClassName = cover_edition_key
     ? ''
@@ -38,6 +47,11 @@ const BookItem = ({ bookId, searchQuery }: BookItemProps) => {
             {author_name ? author_name[0] : 'Unknown author'}
           </p>
           <p>{publish_date ? publish_date[0] : 'Unknown publish date'}</p>
+          <ExternalLinksList
+            amazonBooksId={id_amazon ? id_amazon[0] : ''}
+            googleBooksId={id_google ? id_google[0] : ''}
+            libriVoxId={id_librivox ? id_librivox[0] : ''}
+          />
         </div>
       </div>
     </li>
