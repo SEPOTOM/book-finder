@@ -6,6 +6,10 @@ export default {
       colors: {
         gray: '#dcdcdc',
       },
+      screens: {
+        mob: '460px',
+        mid: '880px',
+      },
     },
   },
   plugins: [],
