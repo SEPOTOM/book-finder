@@ -1,3 +1,9 @@
+export enum SearchTypes {
+  DEFAULT = 'default',
+  TITLE = 'title',
+  AUTHOR = 'author',
+}
+
 export interface SearchBooksResponse {
   docs: BookResponse[];
 }
@@ -15,20 +21,28 @@ export interface BookResponse {
 
 export interface BookItemProps {
   bookId: string;
-  searchQuery: string;
+  searchParams: SearchParams;
 }
 
 export interface BooksListProps {
   searchQuery: string;
+  searchType: SearchTypes;
 }
 
 export interface SearchBooksFormProps {
   searchQuery: string;
   onSearchQueryChange: (newQuery: string) => void;
+  searchType: SearchTypes;
+  onSearchTypeChange: (newType: SearchTypes) => void;
 }
 
 export interface ExternalLinksListProps {
   amazonBooksId: string;
   googleBooksId: string;
   libriVoxId: string;
+}
+
+export interface SearchParams {
+  query: string;
+  type: SearchTypes;
 }

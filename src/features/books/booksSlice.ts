@@ -4,7 +4,12 @@ import { RootState } from '../../app/store';
 
 import { apiSlice } from '../api/apiSlice';
 
-import { BookResponse, SearchBooksResponse } from './types';
+import {
+  BookResponse,
+  SearchBooksResponse,
+  SearchParams,
+  SearchTypes,
+} from './types';
 
 const booksAdapter = createEntityAdapter({
   selectId: (book: BookResponse) => book.key,
@@ -15,8 +20,15 @@ const initialState = booksAdapter.getInitialState();
 export const extendedApiSlice = apiSlice.injectEndpoints({
   endpoints: (builder) => ({
     searchBooks: builder.query({
-      query: (searchQuery) =>
-        `?q=${encodeURIComponent(searchQuery)}&fields=title,author_name,cover_edition_key,key,publish_date,id_amazon,id_librivox,id_google&limit=12`,
+      query: ({ query, type }: SearchParams) => {
+        let searchType = 'q';
+
+        if (type === SearchTypes.AUTHOR || type === SearchTypes.TITLE) {
+          searchType = type;
+        }
+
+        return `?${searchType}=${encodeURIComponent(query)}&fields=title,author_name,cover_edition_key,key,publish_date,id_amazon,id_librivox,id_google&limit=12`;
+      },
       transformResponse: (responseData: SearchBooksResponse) =>
         booksAdapter.setAll(initialState, responseData.docs),
     }),
@@ -25,9 +37,9 @@ export const extendedApiSlice = apiSlice.injectEndpoints({
 
 export const { useSearchBooksQuery } = extendedApiSlice;
 
-export const createSearchedBooksSelectors = (searchQuery: string) => {
+export const createSearchedBooksSelectors = (searchParams: SearchParams) => {
   const selectSearchedBooksResult =
-    extendedApiSlice.endpoints.searchBooks.select(searchQuery);
+    extendedApiSlice.endpoints.searchBooks.select(searchParams);
 
   const selectSearchedBooksData = createSelector(
     selectSearchedBooksResult,

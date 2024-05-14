@@ -8,8 +8,8 @@ import { BookItemProps } from './types';
 
 import ImagePlaceholderSrc from '/img-placeholder.png';
 
-const BookItem = ({ bookId, searchQuery }: BookItemProps) => {
-  const { selectSearchedBookById } = createSearchedBooksSelectors(searchQuery);
+const BookItem = ({ bookId, searchParams }: BookItemProps) => {
+  const { selectSearchedBookById } = createSearchedBooksSelectors(searchParams);
 
   const {
     cover_edition_key,

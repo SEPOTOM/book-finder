@@ -7,12 +7,17 @@ import { useAppSelector } from '../../common/hooks';
 
 import BookItem from './BookItem';
 
-import { BooksListProps } from './types';
+import { BooksListProps, SearchParams } from './types';
 
-const BooksList = ({ searchQuery }: BooksListProps) => {
-  const { isFetching } = useSearchBooksQuery(searchQuery);
+const BooksList = ({ searchQuery, searchType }: BooksListProps) => {
+  const searchParams: SearchParams = {
+    query: searchQuery,
+    type: searchType,
+  };
 
-  const { selectSearchedBooksIds } = createSearchedBooksSelectors(searchQuery);
+  const { isFetching } = useSearchBooksQuery(searchParams);
+
+  const { selectSearchedBooksIds } = createSearchedBooksSelectors(searchParams);
 
   const booksIds = useAppSelector(selectSearchedBooksIds);
 
@@ -30,7 +35,7 @@ const BooksList = ({ searchQuery }: BooksListProps) => {
         return (
           <BookItem
             bookId={String(bookId)}
-            searchQuery={searchQuery}
+            searchParams={searchParams}
             key={bookId}
           />
         );
