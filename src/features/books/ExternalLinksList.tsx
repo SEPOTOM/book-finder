@@ -4,15 +4,19 @@ const ExternalLinksList = ({
   amazonBooksId,
   googleBooksId,
   libriVoxId,
+  openLibraryId,
 }: ExternalLinksListProps) => {
-  const noIds = !(amazonBooksId || googleBooksId || libriVoxId);
-
-  if (noIds) {
-    return <p>There is no external links for this book.</p>;
-  }
-
   return (
     <ul>
+      <li>
+        <a
+          href={`https://openlibrary.org${openLibraryId}`}
+          target="_blank"
+          rel="noreferrer"
+        >
+          View on Open Library
+        </a>
+      </li>
       {googleBooksId !== '' && (
         <li>
           <a

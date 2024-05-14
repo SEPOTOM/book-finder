@@ -53,6 +53,7 @@ const BookItem = ({ bookId, searchParams }: BookItemProps) => {
             amazonBooksId={id_amazon ? id_amazon[0] : ''}
             googleBooksId={id_google ? id_google[0] : ''}
             libriVoxId={id_librivox ? id_librivox[0] : ''}
+            openLibraryId={bookId}
           />
         </div>
       </div>

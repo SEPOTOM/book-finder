@@ -40,6 +40,7 @@ export interface ExternalLinksListProps {
   amazonBooksId: string;
   googleBooksId: string;
   libriVoxId: string;
+  openLibraryId: string;
 }
 
 export interface SearchParams {
