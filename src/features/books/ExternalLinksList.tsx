@@ -16,7 +16,7 @@ const ExternalLinksList = ({
       {googleBooksId !== '' && (
         <li>
           <a
-            href={`https://www.google.com/books/edition/book/${googleBooksId}`}
+            href={`https://books.google.com/books?id=${googleBooksId}`}
             target="_blank"
             rel="noreferrer"
           >
