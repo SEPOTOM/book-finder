@@ -7,6 +7,7 @@ import ExternalLinksList from './ExternalLinksList';
 import { BookItemProps } from './types';
 
 import ImagePlaceholderSrc from '/img-placeholder.png';
+import BookAuthor from './BookAuthor';
 
 const BookItem = ({ bookId, searchParams }: BookItemProps) => {
   const { selectSearchedBookById } = createSearchedBooksSelectors(searchParams);
@@ -15,6 +16,7 @@ const BookItem = ({ bookId, searchParams }: BookItemProps) => {
     cover_edition_key,
     title,
     author_name,
+    author_alternative_name,
     publish_date,
     id_amazon,
     id_google,
@@ -45,10 +47,12 @@ const BookItem = ({ bookId, searchParams }: BookItemProps) => {
           <h2 className="mb-3 font-bold text-3xl">
             {title || 'Unknown title'}
           </h2>
-          <p className="text-lg">
-            {author_name ? author_name[0] : 'Unknown author'}
-          </p>
           <p>{publish_date ? publish_date[0] : 'Unknown publish date'}</p>
+          <BookAuthor
+            searchParams={searchParams}
+            authorNames={author_name || []}
+            authorAlternativeNames={author_alternative_name || []}
+          />
           <ExternalLinksList
             amazonBooksId={id_amazon ? id_amazon[0] : ''}
             googleBooksId={id_google ? id_google[0] : ''}

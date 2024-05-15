@@ -10,6 +10,7 @@ export interface SearchBooksResponse {
 
 export interface BookResponse {
   author_name?: string[];
+  author_alternative_name?: string[];
   cover_edition_key?: string;
   key: string;
   publish_date?: string[];
@@ -41,6 +42,12 @@ export interface ExternalLinksListProps {
   googleBooksId: string;
   libriVoxId: string;
   openLibraryId: string;
+}
+
+export interface BookAuthorProps {
+  searchParams: SearchParams;
+  authorNames: string[];
+  authorAlternativeNames: string[];
 }
 
 export interface SearchParams {
