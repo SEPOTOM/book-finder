@@ -27,7 +27,20 @@ export const extendedApiSlice = apiSlice.injectEndpoints({
           searchType = type;
         }
 
-        return `?${searchType}=${encodeURIComponent(query)}&fields=title,author_name,cover_edition_key,key,publish_date,id_amazon,id_librivox,id_google,author_alternative_name&limit=12`;
+        const fields = [
+          'title',
+          'author_name',
+          'cover_edition_key',
+          'key',
+          'publish_date',
+          'id_amazon',
+          'id_librivox',
+          'id_google',
+          'author_alternative_name',
+          'first_publish_year',
+        ];
+
+        return `?${searchType}=${encodeURIComponent(query)}&fields=${fields.join(',')}&limit=12`;
       },
       transformResponse: (responseData: SearchBooksResponse) =>
         booksAdapter.setAll(initialState, responseData.docs),

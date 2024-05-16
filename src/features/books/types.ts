@@ -18,6 +18,7 @@ export interface BookResponse {
   id_amazon?: string[];
   id_google?: string[];
   id_librivox?: string[];
+  first_publish_year?: number;
 }
 
 export interface BookItemProps {
@@ -48,6 +49,11 @@ export interface BookAuthorProps {
   searchParams: SearchParams;
   authorNames: string[];
   authorAlternativeNames: string[];
+}
+
+export interface BookDateProps {
+  publishDates: string[];
+  firstPublishYear?: string;
 }
 
 export interface SearchParams {

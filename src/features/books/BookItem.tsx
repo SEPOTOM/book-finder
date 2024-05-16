@@ -3,11 +3,12 @@ import { createSearchedBooksSelectors } from './booksSlice';
 import { useAppSelector } from '../../common/hooks';
 
 import ExternalLinksList from './ExternalLinksList';
+import BookAuthor from './BookAuthor';
+import BookDate from './BookDate';
 
 import { BookItemProps } from './types';
 
 import ImagePlaceholderSrc from '/img-placeholder.png';
-import BookAuthor from './BookAuthor';
 
 const BookItem = ({ bookId, searchParams }: BookItemProps) => {
   const { selectSearchedBookById } = createSearchedBooksSelectors(searchParams);
@@ -18,6 +19,7 @@ const BookItem = ({ bookId, searchParams }: BookItemProps) => {
     author_name,
     author_alternative_name,
     publish_date,
+    first_publish_year,
     id_amazon,
     id_google,
     id_librivox,
@@ -47,7 +49,10 @@ const BookItem = ({ bookId, searchParams }: BookItemProps) => {
           <h2 className="mb-3 font-bold text-3xl">
             {title || 'Unknown title'}
           </h2>
-          <p>Publication date: {publish_date ? publish_date[0] : 'unknown'}</p>
+          <BookDate
+            publishDates={publish_date || []}
+            firstPublishYear={first_publish_year?.toString()}
+          />
           <BookAuthor
             searchParams={searchParams}
             authorNames={author_name || []}
