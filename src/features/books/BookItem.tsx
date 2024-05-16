@@ -47,7 +47,7 @@ const BookItem = ({ bookId, searchParams }: BookItemProps) => {
           <h2 className="mb-3 font-bold text-3xl">
             {title || 'Unknown title'}
           </h2>
-          <p>{publish_date ? publish_date[0] : 'Unknown publish date'}</p>
+          <p>Publication date: {publish_date ? publish_date[0] : 'unknown'}</p>
           <BookAuthor
             searchParams={searchParams}
             authorNames={author_name || []}

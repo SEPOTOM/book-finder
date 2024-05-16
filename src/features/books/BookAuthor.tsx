@@ -29,7 +29,7 @@ const BookAuthor = ({
 
   return (
     <>
-      <p className="text-lg">{authorName}</p>
+      <p className="text-lg">Author: {authorName}</p>
       {authorAlternativeName !== '' && (
         <p className="text-lg">Alternative name: {authorAlternativeName}</p>
       )}

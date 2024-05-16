@@ -23,7 +23,11 @@ const App = () => {
         />
       </header>
       <main className="grow">
-        {searchQuery !== '' && (
+        {searchQuery === '' ? (
+          <p className="flex justify-center items-center h-full font-light text-3xl italic">
+            Search results will be here
+          </p>
+        ) : (
           <BooksList searchQuery={searchQuery} searchType={searchType} />
         )}
       </main>

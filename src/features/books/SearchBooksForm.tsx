@@ -19,23 +19,31 @@ const SearchBooksForm = ({
     onSearchTypeChange(selectValue);
   };
 
+  let inputPlaceholder = 'Search for books';
+
+  if (selectValue === SearchTypes.AUTHOR) {
+    inputPlaceholder += ' by author';
+  }
+
+  if (selectValue === SearchTypes.TITLE) {
+    inputPlaceholder += ' by title';
+  }
+
   return (
     <form
       role="search"
       onSubmit={handleFormSubmit}
       className="flex items-end gap-x-2 px-3"
     >
-      <label className="flex flex-wrap items-center gap-2 font-medium text-2xl">
-        Search for books:
-        <input
-          type="search"
-          value={inputValue}
-          onChange={(e: ChangeEvent<HTMLInputElement>) =>
-            setInputValue(e.currentTarget.value)
-          }
-          className="grow px-2 py-1 text-xl border-2 border-black rounded-md outline-offset-4"
-        />
-      </label>
+      <input
+        type="search"
+        placeholder={inputPlaceholder}
+        value={inputValue}
+        onChange={(e: ChangeEvent<HTMLInputElement>) =>
+          setInputValue(e.currentTarget.value)
+        }
+        className="grow min-w-72 px-2 py-1 text-xl border-2 border-black rounded-md outline-offset-4"
+      />
       <select
         value={selectValue}
         onChange={(e: ChangeEvent<HTMLSelectElement>) =>
