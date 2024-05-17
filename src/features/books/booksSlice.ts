@@ -11,6 +11,8 @@ import {
   SearchTypes,
 } from './types';
 
+const BOOKS_FOR_SEARCH = 12;
+
 const booksAdapter = createEntityAdapter({
   selectId: (book: BookResponse) => book.key,
 });
@@ -20,7 +22,7 @@ const initialState = booksAdapter.getInitialState();
 export const extendedApiSlice = apiSlice.injectEndpoints({
   endpoints: (builder) => ({
     searchBooks: builder.query({
-      query: ({ query, type }: SearchParams) => {
+      query: ({ query, type, offset }: SearchParams) => {
         let searchType = 'q';
 
         if (type === SearchTypes.AUTHOR || type === SearchTypes.TITLE) {
@@ -40,7 +42,7 @@ export const extendedApiSlice = apiSlice.injectEndpoints({
           'first_publish_year',
         ];
 
-        return `?${searchType}=${encodeURIComponent(query)}&fields=${fields.join(',')}&limit=12`;
+        return `?${searchType}=${encodeURIComponent(query)}&fields=${fields.join(',')}&limit=${BOOKS_FOR_SEARCH}&offset=${offset * BOOKS_FOR_SEARCH}`;
       },
       transformResponse: (responseData: SearchBooksResponse) =>
         booksAdapter.setAll(initialState, responseData.docs),
@@ -70,4 +72,13 @@ export const createSearchedBooksSelectors = (searchParams: SearchParams) => {
     selectSearchedBooksIds,
     selectSearchedBookById,
   };
+};
+
+export const selectIsSearchBooksFetching = (
+  state: RootState,
+  searchParams: SearchParams
+) => {
+  const queryState =
+    extendedApiSlice.endpoints.searchBooks.select(searchParams)(state);
+  return queryState.isLoading;
 };

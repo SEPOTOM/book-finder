@@ -8,6 +8,7 @@ const SearchBooksForm = ({
   onSearchQueryChange,
   searchType,
   onSearchTypeChange,
+  onSubmit,
 }: SearchBooksFormProps) => {
   const [inputValue, setInputValue] = useState(searchQuery);
   const [selectValue, setSelectValue] = useState<SearchTypes>(searchType);
@@ -15,8 +16,13 @@ const SearchBooksForm = ({
   const handleFormSubmit = (e: FormEvent) => {
     e.preventDefault();
 
+    if (inputValue === searchQuery && selectValue === searchType) {
+      return;
+    }
+
     onSearchQueryChange(inputValue);
     onSearchTypeChange(selectValue);
+    onSubmit(inputValue, selectValue);
   };
 
   let inputPlaceholder = 'Search for books';

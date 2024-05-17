@@ -7,12 +7,17 @@ import { useAppSelector } from '../../common/hooks';
 
 import BookItem from './BookItem';
 
-import { BooksListProps, SearchParams } from './types';
+import { BookItemsSetProps, SearchParams } from './types';
 
-const BooksList = ({ searchQuery, searchType }: BooksListProps) => {
+const BookItemsSet = ({
+  searchQuery,
+  searchType,
+  offset,
+}: BookItemsSetProps) => {
   const searchParams: SearchParams = {
     query: searchQuery,
     type: searchType,
+    offset,
   };
 
   const { isFetching } = useSearchBooksQuery(searchParams);
@@ -23,25 +28,21 @@ const BooksList = ({ searchQuery, searchType }: BooksListProps) => {
 
   if (isFetching) {
     return (
-      <p className="flex justify-center items-center h-full text-3xl font-bold">
+      <li className="grow self-center text-3xl font-bold text-center">
         Loading...
-      </p>
+      </li>
     );
   }
 
-  return (
-    <ul className="flex flex-wrap">
-      {booksIds.map((bookId) => {
-        return (
-          <BookItem
-            bookId={String(bookId)}
-            searchParams={searchParams}
-            key={bookId}
-          />
-        );
-      })}
-    </ul>
-  );
+  return booksIds.map((bookId) => {
+    return (
+      <BookItem
+        bookId={String(bookId)}
+        searchParams={searchParams}
+        key={bookId}
+      />
+    );
+  });
 };
 
-export default BooksList;
+export default BookItemsSet;

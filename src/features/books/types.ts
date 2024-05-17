@@ -26,9 +26,10 @@ export interface BookItemProps {
   searchParams: SearchParams;
 }
 
-export interface BooksListProps {
+export interface BookItemsSetProps {
   searchQuery: string;
   searchType: SearchTypes;
+  offset: number;
 }
 
 export interface SearchBooksFormProps {
@@ -36,6 +37,7 @@ export interface SearchBooksFormProps {
   onSearchQueryChange: (newQuery: string) => void;
   searchType: SearchTypes;
   onSearchTypeChange: (newType: SearchTypes) => void;
+  onSubmit: (newQuery: string, newType: SearchTypes) => void;
 }
 
 export interface ExternalLinksListProps {
@@ -56,7 +58,13 @@ export interface BookDateProps {
   firstPublishYear?: string;
 }
 
+export interface LoadMoreButtonProps {
+  lastSetSearchParams: SearchParams;
+  onClick: () => void;
+}
+
 export interface SearchParams {
   query: string;
   type: SearchTypes;
+  offset: number;
 }

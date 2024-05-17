@@ -4,13 +4,15 @@ import { Provider } from 'react-redux';
 import { store } from './app/store';
 
 import SearchBooksForm from './features/books/SearchBooksForm';
-import BooksList from './features/books/BooksList';
+import BookItemsSet from './features/books/BookItemsSet';
 
 import { SearchTypes } from './features/books/types';
+import LoadMoreButton from './features/books/LoadMoreButton';
 
 const App = () => {
   const [searchQuery, setSearchQuery] = useState('');
   const [searchType, setSearchType] = useState(SearchTypes.DEFAULT);
+  const [offsets, setOffsets] = useState<number[]>([]);
 
   return (
     <Provider store={store}>
@@ -20,15 +22,36 @@ const App = () => {
           onSearchQueryChange={(newQuery) => setSearchQuery(newQuery)}
           searchType={searchType}
           onSearchTypeChange={(newType) => setSearchType(newType)}
+          onSubmit={() => setOffsets([0])}
         />
       </header>
-      <main className="grow">
+      <main className="grow flex flex-col">
         {searchQuery === '' ? (
           <p className="flex justify-center items-center h-full font-light text-3xl italic">
             Search results will be here
           </p>
         ) : (
-          <BooksList searchQuery={searchQuery} searchType={searchType} />
+          <>
+            <ul className="grow flex flex-wrap">
+              {offsets.map((offset) => (
+                <BookItemsSet
+                  searchQuery={searchQuery}
+                  searchType={searchType}
+                  offset={offset}
+                  key={offset}
+                />
+              ))}
+              <li></li>
+            </ul>
+            <LoadMoreButton
+              lastSetSearchParams={{
+                query: searchQuery,
+                type: searchType,
+                offset: offsets[offsets.length - 1],
+              }}
+              onClick={() => setOffsets([...offsets, offsets.length])}
+            />
+          </>
         )}
       </main>
       <footer className="flex justify-center py-8">
