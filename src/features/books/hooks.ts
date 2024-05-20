@@ -5,7 +5,7 @@ export const useAuthorNames = (
   authorNames: string[],
   authorAlternativeNames: string[]
 ) => {
-  let authorName = authorNames[0] || 'Unknown author';
+  let authorName = authorNames[0] || 'unknown';
   let authorAlternativeName = '';
 
   if (searchParams.type === SearchTypes.AUTHOR) {
