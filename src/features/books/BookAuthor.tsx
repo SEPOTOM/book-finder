@@ -1,31 +1,9 @@
-import { BookAuthorProps, SearchTypes } from './types';
+import { useAuthorNames } from './hooks';
 
-const BookAuthor = ({
-  searchParams,
-  authorNames,
-  authorAlternativeNames,
-}: BookAuthorProps) => {
-  let authorName = authorNames[0] || 'Unknown author';
-  let authorAlternativeName = '';
+import { BookAuthorProps } from './types';
 
-  if (searchParams.type === SearchTypes.AUTHOR) {
-    const searchQueryLowerCase = searchParams.query.toLowerCase();
-    const searchedAuthorName = authorNames.find((name) =>
-      name.toLowerCase().includes(searchQueryLowerCase)
-    );
-
-    if (searchedAuthorName) {
-      authorName = searchedAuthorName;
-    } else {
-      const searchedAuthorAlternativeName = authorAlternativeNames.find(
-        (name) => name.toLowerCase().includes(searchQueryLowerCase)
-      );
-
-      if (searchedAuthorAlternativeName) {
-        authorAlternativeName = searchedAuthorAlternativeName;
-      }
-    }
-  }
+const BookAuthor = (props: BookAuthorProps) => {
+  const { authorName, authorAlternativeName } = useAuthorNames(props);
 
   return (
     <>
