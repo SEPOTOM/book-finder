@@ -1,13 +1,13 @@
 import { createSearchedBooksSelectors } from './booksSlice';
 
-import { useAppSelector } from '../../common/hooks';
-
 import ExternalLinksList from './ExternalLinksList';
+
+import { useAppSelector } from '../../common/hooks';
+import { useAuthorNames, usePublishDate } from './hooks';
 
 import { BookItemProps } from './types';
 
 import ImagePlaceholderSrc from '/img-placeholder.png';
-import { useAuthorNames, usePublishDate } from './hooks';
 
 const BookItem = ({ bookId, searchParams }: BookItemProps) => {
   const { selectSearchedBookById } = createSearchedBooksSelectors(searchParams);
