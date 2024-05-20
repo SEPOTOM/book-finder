@@ -34,6 +34,7 @@ const BookItem = ({ bookId, searchParams }: BookItemProps) => {
     first_publish_year?.toString()
   );
 
+  const bookTitle = title || 'Unknown title';
   const noImageClassName = cover_edition_key
     ? ''
     : 'bg-gray items-center mob:max-sm:h-full mid:max-lg:h-full 2xl:h-full';
@@ -50,14 +51,12 @@ const BookItem = ({ bookId, searchParams }: BookItemProps) => {
                 ? `https://covers.openlibrary.org/b/olid/${cover_edition_key}-M.jpg`
                 : ImagePlaceholderSrc
             }
-            alt={title || 'Unknown title'}
+            alt={bookTitle}
             className="max-w-full max-h-full object-contain rounded-lg"
           />
         </div>
         <div>
-          <h2 className="mb-3 font-bold text-3xl">
-            {title || 'Unknown title'}
-          </h2>
+          <h2 className="mb-3 font-bold text-3xl">{bookTitle}</h2>
           <p>Publication date: {firstPublishDate}</p>
           <p className="text-lg">Author: {authorName}</p>
           {authorAlternativeName !== '' && (
