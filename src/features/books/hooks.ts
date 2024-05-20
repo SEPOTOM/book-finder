@@ -1,6 +1,6 @@
 import { format, isValid, min } from 'date-fns';
 
-import { BookDateProps, SearchParams, SearchTypes } from './types';
+import { SearchParams, SearchTypes } from './types';
 
 export const useAuthorNames = (
   searchParams: SearchParams,
@@ -35,10 +35,10 @@ export const useAuthorNames = (
   };
 };
 
-export const usePublishDate = ({
-  publishDates,
-  firstPublishYear,
-}: BookDateProps) => {
+export const usePublishDate = (
+  publishDates: string[],
+  firstPublishYear?: string
+) => {
   let firstPublishDate = 'unknown';
 
   if (publishDates && firstPublishYear) {

@@ -3,12 +3,11 @@ import { createSearchedBooksSelectors } from './booksSlice';
 import { useAppSelector } from '../../common/hooks';
 
 import ExternalLinksList from './ExternalLinksList';
-import BookDate from './BookDate';
 
 import { BookItemProps } from './types';
 
 import ImagePlaceholderSrc from '/img-placeholder.png';
-import { useAuthorNames } from './hooks';
+import { useAuthorNames, usePublishDate } from './hooks';
 
 const BookItem = ({ bookId, searchParams }: BookItemProps) => {
   const { selectSearchedBookById } = createSearchedBooksSelectors(searchParams);
@@ -29,6 +28,10 @@ const BookItem = ({ bookId, searchParams }: BookItemProps) => {
     searchParams,
     author_name || [],
     author_alternative_name || []
+  );
+  const firstPublishDate = usePublishDate(
+    publish_date || [],
+    first_publish_year?.toString()
   );
 
   const noImageClassName = cover_edition_key
@@ -55,10 +58,7 @@ const BookItem = ({ bookId, searchParams }: BookItemProps) => {
           <h2 className="mb-3 font-bold text-3xl">
             {title || 'Unknown title'}
           </h2>
-          <BookDate
-            publishDates={publish_date || []}
-            firstPublishYear={first_publish_year?.toString()}
-          />
+          <p>Publication date: {firstPublishDate}</p>
           <p className="text-lg">Author: {authorName}</p>
           {authorAlternativeName !== '' && (
             <p className="text-lg">Alternative name: {authorAlternativeName}</p>

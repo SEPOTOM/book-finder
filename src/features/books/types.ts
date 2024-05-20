@@ -47,11 +47,6 @@ export interface ExternalLinksListProps {
   openLibraryId: string;
 }
 
-export interface BookDateProps {
-  publishDates: string[];
-  firstPublishYear?: string;
-}
-
 export interface LoadMoreButtonProps {
   lastSetSearchParams: SearchParams;
   onClick: () => void;
