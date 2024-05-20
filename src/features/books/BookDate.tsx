@@ -1,32 +1,9 @@
-import { format, isValid, min } from 'date-fns';
-
 import { BookDateProps } from './types';
 
-const BookDate = ({ publishDates, firstPublishYear }: BookDateProps) => {
-  let firstPublishDate = 'unknown';
+import { usePublishDate } from './hooks';
 
-  if (publishDates && firstPublishYear) {
-    const firstPublishYearDatesStr = publishDates.filter((date) =>
-      date.includes(firstPublishYear)
-    );
-
-    const firstPublishYearDates = firstPublishYearDatesStr
-      .map((dateStr) => {
-        const parsedDate = new Date(dateStr);
-        if (isValid(parsedDate)) {
-          return parsedDate;
-        }
-      })
-      .filter((date) => date !== undefined) as Date[];
-
-    if (firstPublishYearDates.length === 0) {
-      firstPublishDate = firstPublishYear;
-    } else {
-      firstPublishDate = format(min(firstPublishYearDates), 'MMMM d, yyyy');
-    }
-  } else if (firstPublishYear) {
-    firstPublishDate = firstPublishYear;
-  }
+const BookDate = (props: BookDateProps) => {
+  const firstPublishDate = usePublishDate(props);
 
   return <p>Publication date: {firstPublishDate}</p>;
 };
