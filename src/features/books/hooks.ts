@@ -1,5 +1,3 @@
-import { format, isValid, min } from 'date-fns';
-
 import { SearchParams, SearchTypes } from './types';
 
 export const useAuthorNames = (
@@ -41,24 +39,39 @@ export const usePublishDate = (
 ) => {
   let firstPublishDate = 'unknown';
 
-  if (publishDates && firstPublishYear) {
-    const firstPublishYearDatesStr = publishDates.filter((date) =>
-      date.includes(firstPublishYear)
+  if (publishDates.length > 0 && firstPublishYear) {
+    const firstPublishYearDates = publishDates.filter(
+      (date) => date.includes(firstPublishYear) && date.length > 4
     );
 
-    const firstPublishYearDates = firstPublishYearDatesStr
-      .map((dateStr) => {
-        const parsedDate = new Date(dateStr);
-        if (isValid(parsedDate)) {
-          return parsedDate;
-        }
-      })
-      .filter((date) => date !== undefined) as Date[];
+    const earliestFirstPublishYearDate = firstPublishYearDates.reduce(
+      (earliestDate, currentDate) => {
+        const currentDateTimestamp = Date.parse(currentDate);
+        const isCurrentDateTimestampNaN = isNaN(currentDateTimestamp);
 
-    if (firstPublishYearDates.length === 0) {
-      firstPublishDate = firstPublishYear;
+        if (earliestDate === '' && !isCurrentDateTimestampNaN) {
+          return currentDate;
+        }
+
+        const earliestDateTimestamp = Date.parse(earliestDate);
+
+        if (
+          !isNaN(earliestDateTimestamp) &&
+          !isCurrentDateTimestampNaN &&
+          currentDateTimestamp < earliestDateTimestamp
+        ) {
+          return currentDate;
+        }
+
+        return earliestDate;
+      },
+      ''
+    );
+
+    if (earliestFirstPublishYearDate !== '') {
+      firstPublishDate = earliestFirstPublishYearDate;
     } else {
-      firstPublishDate = format(min(firstPublishYearDates), 'MMMM d, yyyy');
+      firstPublishDate = firstPublishYear;
     }
   } else if (firstPublishYear) {
     firstPublishDate = firstPublishYear;
