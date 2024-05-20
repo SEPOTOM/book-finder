@@ -3,12 +3,12 @@ import { createSearchedBooksSelectors } from './booksSlice';
 import { useAppSelector } from '../../common/hooks';
 
 import ExternalLinksList from './ExternalLinksList';
-import BookAuthor from './BookAuthor';
 import BookDate from './BookDate';
 
 import { BookItemProps } from './types';
 
 import ImagePlaceholderSrc from '/img-placeholder.png';
+import { useAuthorNames } from './hooks';
 
 const BookItem = ({ bookId, searchParams }: BookItemProps) => {
   const { selectSearchedBookById } = createSearchedBooksSelectors(searchParams);
@@ -24,6 +24,12 @@ const BookItem = ({ bookId, searchParams }: BookItemProps) => {
     id_google,
     id_librivox,
   } = useAppSelector((state) => selectSearchedBookById(state, bookId));
+
+  const { authorName, authorAlternativeName } = useAuthorNames(
+    searchParams,
+    author_name || [],
+    author_alternative_name || []
+  );
 
   const noImageClassName = cover_edition_key
     ? ''
@@ -53,11 +59,10 @@ const BookItem = ({ bookId, searchParams }: BookItemProps) => {
             publishDates={publish_date || []}
             firstPublishYear={first_publish_year?.toString()}
           />
-          <BookAuthor
-            searchParams={searchParams}
-            authorNames={author_name || []}
-            authorAlternativeNames={author_alternative_name || []}
-          />
+          <p className="text-lg">Author: {authorName}</p>
+          {authorAlternativeName !== '' && (
+            <p className="text-lg">Alternative name: {authorAlternativeName}</p>
+          )}
           <ExternalLinksList
             amazonBooksId={id_amazon ? id_amazon[0] : ''}
             googleBooksId={id_google ? id_google[0] : ''}

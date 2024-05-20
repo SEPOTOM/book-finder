@@ -47,12 +47,6 @@ export interface ExternalLinksListProps {
   openLibraryId: string;
 }
 
-export interface BookAuthorProps {
-  searchParams: SearchParams;
-  authorNames: string[];
-  authorAlternativeNames: string[];
-}
-
 export interface BookDateProps {
   publishDates: string[];
   firstPublishYear?: string;

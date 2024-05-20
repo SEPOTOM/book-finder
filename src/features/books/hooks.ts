@@ -1,10 +1,10 @@
-import { BookAuthorProps, SearchTypes } from './types';
+import { SearchParams, SearchTypes } from './types';
 
-export const useAuthorNames = ({
-  searchParams,
-  authorNames,
-  authorAlternativeNames,
-}: BookAuthorProps) => {
+export const useAuthorNames = (
+  searchParams: SearchParams,
+  authorNames: string[],
+  authorAlternativeNames: string[]
+) => {
   let authorName = authorNames[0] || 'Unknown author';
   let authorAlternativeName = '';
 
