@@ -5,9 +5,9 @@ import { store } from './app/store';
 
 import SearchBooksForm from './features/books/SearchBooksForm';
 import BookItemsSet from './features/books/BookItemsSet';
+import LoadMoreButton from './features/books/LoadMoreButton';
 
 import { SearchTypes } from './features/books/types';
-import LoadMoreButton from './features/books/LoadMoreButton';
 
 const App = () => {
   const [searchQuery, setSearchQuery] = useState('');
