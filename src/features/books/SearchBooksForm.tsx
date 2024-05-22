@@ -21,12 +21,6 @@ const SearchBooksForm = ({
     onSubmit(inputValue, selectValue);
   };
 
-  let inputPlaceholder = 'Search for books';
-
-  if (selectValue !== 'q') {
-    inputPlaceholder += ` by ${selectValue}`;
-  }
-
   return (
     <form
       role="search"
@@ -35,7 +29,7 @@ const SearchBooksForm = ({
     >
       <input
         type="search"
-        placeholder={inputPlaceholder}
+        placeholder={`Search for books ${selectValue === 'q' ? '' : `by ${selectValue}`}`}
         value={inputValue}
         onChange={(e: ChangeEvent<HTMLInputElement>) =>
           setInputValue(e.currentTarget.value)
