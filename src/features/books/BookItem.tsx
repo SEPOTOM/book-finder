@@ -1,3 +1,5 @@
+import clsx from 'clsx';
+
 import { createSearchedBooksSelectors } from './booksSlice';
 
 import ExternalLinksList from './ExternalLinksList';
@@ -35,15 +37,18 @@ const BookItem = ({ bookId, searchParams }: BookItemProps) => {
   );
 
   const bookTitle = title || 'Unknown title';
-  const noImageClassName = cover_edition_key
-    ? ''
-    : 'bg-gray items-center mob:max-sm:h-full mid:max-lg:h-full 2xl:h-full';
 
   return (
     <li className="basis-full px-4 py-2 sm:basis-1/2 lg:basis-1/3">
       <div className="flex flex-col gap-5 w-full h-full p-5 border-4 border-black rounded-lg shadow-lg mob:max-sm:flex-row mid:max-lg:flex-row 2xl:flex-row">
         <div
-          className={`self-center shrink-0 flex justify-center w-44 max-h-72 rounded-lg mob:max-sm:self-start mid:max-lg:self-start 2xl:self-start ${noImageClassName}`}
+          className={clsx(
+            'self-center shrink-0 flex justify-center w-44 max-h-72 rounded-lg mob:max-sm:self-start mid:max-lg:self-start 2xl:self-start',
+            {
+              'bg-gray items-center mob:max-sm:h-full mid:max-lg:h-full 2xl:h-full':
+                !cover_edition_key,
+            }
+          )}
         >
           <img
             src={
