@@ -12,12 +12,12 @@ import { SearchTypes } from './features/books/types';
 const App = () => {
   const [searchQuery, setSearchQuery] = useState('');
   const [searchType, setSearchType] = useState<SearchTypes>('q');
-  const [offsets, setOffsets] = useState<number[]>([]);
+  const [searchOffsets, setSearchOffsets] = useState<number[]>([]);
 
   const handleSearchFormSubmit = (newQuery: string, newType: SearchTypes) => {
     setSearchQuery(newQuery);
     setSearchType(newType);
-    setOffsets([0]);
+    setSearchOffsets([0]);
   };
 
   return (
@@ -37,12 +37,12 @@ const App = () => {
         ) : (
           <>
             <ul className="grow flex flex-wrap">
-              {offsets.map((offset) => (
+              {searchOffsets.map((searchOffset) => (
                 <BookItemsSet
                   searchQuery={searchQuery}
                   searchType={searchType}
-                  offset={offset}
-                  key={offset}
+                  offset={searchOffset}
+                  key={searchOffset}
                 />
               ))}
               <li></li>
@@ -51,9 +51,11 @@ const App = () => {
               lastSetSearchParams={{
                 query: searchQuery,
                 type: searchType,
-                offset: offsets[offsets.length - 1],
+                offset: searchOffsets[searchOffsets.length - 1],
               }}
-              onClick={() => setOffsets([...offsets, offsets.length])}
+              onClick={() =>
+                setSearchOffsets([...searchOffsets, searchOffsets.length])
+              }
             />
           </>
         )}
