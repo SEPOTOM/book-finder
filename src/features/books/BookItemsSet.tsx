@@ -3,9 +3,9 @@ import {
   useSearchBooksQuery,
 } from './booksSlice';
 
-import { useAppSelector } from '../../common/hooks';
-
 import BookItem from './BookItem';
+
+import { useAppSelector } from '../../common/hooks';
 
 import { BookItemsSetProps, SearchParams } from './types';
 
