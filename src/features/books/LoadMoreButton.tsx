@@ -1,5 +1,7 @@
-import { useAppSelector } from '../../common/hooks';
 import { selectIsSearchBooksFetching } from './booksSlice';
+
+import { useAppSelector } from '../../common/hooks';
+
 import { LoadMoreButtonProps } from './types';
 
 const LoadMoreButton = ({
