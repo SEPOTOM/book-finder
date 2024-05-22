@@ -12,10 +12,16 @@ const LoadMoreButton = ({
     selectIsSearchBooksFetching(state, lastSetSearchParams)
   );
 
-  return areBooksLoading ? null : (
-    <button type="button" onClick={onClick} className="text-lg cursor-pointer">
-      Load more
-    </button>
+  return (
+    !areBooksLoading && (
+      <button
+        type="button"
+        onClick={onClick}
+        className="text-lg cursor-pointer"
+      >
+        Load more
+      </button>
+    )
   );
 };
 
