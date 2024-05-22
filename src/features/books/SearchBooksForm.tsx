@@ -5,9 +5,7 @@ import { SearchBooksFormProps, SearchTypes } from './types';
 
 const SearchBooksForm = ({
   searchQuery,
-  onSearchQueryChange,
   searchType,
-  onSearchTypeChange,
   onSubmit,
 }: SearchBooksFormProps) => {
   const [inputValue, setInputValue] = useState(searchQuery);
@@ -20,8 +18,6 @@ const SearchBooksForm = ({
       return;
     }
 
-    onSearchQueryChange(inputValue);
-    onSearchTypeChange(selectValue);
     onSubmit(inputValue, selectValue);
   };
 

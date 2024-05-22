@@ -14,15 +14,19 @@ const App = () => {
   const [searchType, setSearchType] = useState<SearchTypes>('q');
   const [offsets, setOffsets] = useState<number[]>([]);
 
+  const handleSearchFormSubmit = (newQuery: string, newType: SearchTypes) => {
+    setSearchQuery(newQuery);
+    setSearchType(newType);
+    setOffsets([0]);
+  };
+
   return (
     <Provider store={store}>
       <header className="flex justify-center py-6 sm:py-12">
         <SearchBooksForm
           searchQuery={searchQuery}
-          onSearchQueryChange={(newQuery) => setSearchQuery(newQuery)}
           searchType={searchType}
-          onSearchTypeChange={(newType) => setSearchType(newType)}
-          onSubmit={() => setOffsets([0])}
+          onSubmit={handleSearchFormSubmit}
         />
       </header>
       <main className="grow flex flex-col">

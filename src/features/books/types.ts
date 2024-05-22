@@ -30,9 +30,7 @@ export interface BookItemsSetProps {
 
 export interface SearchBooksFormProps {
   searchQuery: string;
-  onSearchQueryChange: (newQuery: string) => void;
   searchType: SearchTypes;
-  onSearchTypeChange: (newType: SearchTypes) => void;
   onSubmit: (newQuery: string, newType: SearchTypes) => void;
 }
 
