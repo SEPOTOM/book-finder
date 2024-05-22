@@ -34,15 +34,13 @@ const BookItemsSet = ({
     );
   }
 
-  return booksIds.map((bookId) => {
-    return (
-      <BookItem
-        bookId={String(bookId)}
-        searchParams={searchParams}
-        key={bookId}
-      />
-    );
-  });
+  return booksIds.map((bookId) => (
+    <BookItem
+      bookId={String(bookId)}
+      searchParams={searchParams}
+      key={bookId}
+    />
+  ));
 };
 
 export default BookItemsSet;
