@@ -27,12 +27,8 @@ const SearchBooksForm = ({
 
   let inputPlaceholder = 'Search for books';
 
-  if (selectValue === SearchTypes.AUTHOR) {
-    inputPlaceholder += ' by author';
-  }
-
-  if (selectValue === SearchTypes.TITLE) {
-    inputPlaceholder += ' by title';
+  if (selectValue !== 'q') {
+    inputPlaceholder += ` by ${selectValue}`;
   }
 
   return (
@@ -56,9 +52,9 @@ const SearchBooksForm = ({
           setSelectValue(e.currentTarget.value as SearchTypes)
         }
       >
-        <option value={SearchTypes.DEFAULT}>Default</option>
-        <option value={SearchTypes.TITLE}>Title</option>
-        <option value={SearchTypes.AUTHOR}>Author</option>
+        <option value="q">Default</option>
+        <option value="title">Title</option>
+        <option value="author">Author</option>
       </select>
       <button type="submit" aria-label="Search" className="pb-[2px]">
         <MagnifyingGlassIcon width={36} height={36} />

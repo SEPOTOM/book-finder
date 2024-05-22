@@ -1,4 +1,4 @@
-import { SearchParams, SearchTypes } from './types';
+import { SearchParams } from './types';
 
 export const useAuthorNames = (
   searchParams: SearchParams,
@@ -8,7 +8,7 @@ export const useAuthorNames = (
   let authorName = authorNames[0] || 'unknown';
   let authorAlternativeName = '';
 
-  if (searchParams.type === SearchTypes.AUTHOR) {
+  if (searchParams.type === 'author') {
     const searchQueryLowerCase = searchParams.query.toLowerCase();
     const searchedAuthorName = authorNames.find((name) =>
       name.toLowerCase().includes(searchQueryLowerCase)

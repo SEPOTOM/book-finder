@@ -4,12 +4,7 @@ import { RootState } from '../../app/store';
 
 import { apiSlice } from '../api/apiSlice';
 
-import {
-  BookResponse,
-  SearchBooksResponse,
-  SearchParams,
-  SearchTypes,
-} from './types';
+import { BookResponse, SearchBooksResponse, SearchParams } from './types';
 
 const BOOKS_FOR_SEARCH_AMOUNT = 12;
 
@@ -23,12 +18,6 @@ export const extendedApiSlice = apiSlice.injectEndpoints({
   endpoints: (builder) => ({
     searchBooks: builder.query({
       query: ({ query, type, offset }: SearchParams) => {
-        let searchType = 'q';
-
-        if (type === SearchTypes.AUTHOR || type === SearchTypes.TITLE) {
-          searchType = type;
-        }
-
         const fields = [
           'title',
           'author_name',
@@ -42,7 +31,7 @@ export const extendedApiSlice = apiSlice.injectEndpoints({
           'first_publish_year',
         ];
 
-        return `?${searchType}=${encodeURIComponent(query)}&fields=${fields.join(',')}&limit=${BOOKS_FOR_SEARCH_AMOUNT}&offset=${offset * BOOKS_FOR_SEARCH_AMOUNT}`;
+        return `?${type}=${encodeURIComponent(query)}&fields=${fields.join(',')}&limit=${BOOKS_FOR_SEARCH_AMOUNT}&offset=${offset * BOOKS_FOR_SEARCH_AMOUNT}`;
       },
       transformResponse: (responseData: SearchBooksResponse) =>
         booksAdapter.setAll(initialState, responseData.docs),

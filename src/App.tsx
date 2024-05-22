@@ -11,7 +11,7 @@ import LoadMoreButton from './features/books/LoadMoreButton';
 
 const App = () => {
   const [searchQuery, setSearchQuery] = useState('');
-  const [searchType, setSearchType] = useState(SearchTypes.DEFAULT);
+  const [searchType, setSearchType] = useState<SearchTypes>('q');
   const [offsets, setOffsets] = useState<number[]>([]);
 
   return (

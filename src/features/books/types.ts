@@ -1,8 +1,4 @@
-export enum SearchTypes {
-  DEFAULT = 'default',
-  TITLE = 'title',
-  AUTHOR = 'author',
-}
+export type SearchTypes = 'q' | 'title' | 'author';
 
 export interface SearchBooksResponse {
   docs: BookResponse[];
