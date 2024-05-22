@@ -11,7 +11,7 @@ import {
   SearchTypes,
 } from './types';
 
-const BOOKS_FOR_SEARCH = 12;
+const BOOKS_FOR_SEARCH_AMOUNT = 12;
 
 const booksAdapter = createEntityAdapter({
   selectId: (book: BookResponse) => book.key,
@@ -42,7 +42,7 @@ export const extendedApiSlice = apiSlice.injectEndpoints({
           'first_publish_year',
         ];
 
-        return `?${searchType}=${encodeURIComponent(query)}&fields=${fields.join(',')}&limit=${BOOKS_FOR_SEARCH}&offset=${offset * BOOKS_FOR_SEARCH}`;
+        return `?${searchType}=${encodeURIComponent(query)}&fields=${fields.join(',')}&limit=${BOOKS_FOR_SEARCH_AMOUNT}&offset=${offset * BOOKS_FOR_SEARCH_AMOUNT}`;
       },
       transformResponse: (responseData: SearchBooksResponse) =>
         booksAdapter.setAll(initialState, responseData.docs),
