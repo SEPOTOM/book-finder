@@ -60,13 +60,23 @@ const BookItem = ({ bookId, searchParams }: BookItemProps) => {
             className="max-w-full max-h-full object-contain rounded-lg"
           />
         </div>
-        <div>
-          <h2 className="mb-3 font-bold text-3xl">{bookTitle}</h2>
-          <p>Publication date: {firstPublishDate}</p>
-          <p className="text-lg">Author: {authorName}</p>
-          {authorAlternativeName !== '' && (
-            <p className="text-lg">Alternative name: {authorAlternativeName}</p>
-          )}
+        <div className="grow flex flex-col gap-y-2">
+          <h2 className="mb-1 font-bold text-3xl">{bookTitle}</h2>
+          <p>
+            <span className="font-bold">Publication date:</span>{' '}
+            {firstPublishDate}
+          </p>
+          <div className="grow mb-1">
+            <p className="text-lg">
+              <span className="font-bold">Author:</span> {authorName}
+            </p>
+            {authorAlternativeName !== '' && (
+              <p className="text-lg">
+                <span className="font-bold">Alternative name:</span>{' '}
+                {authorAlternativeName}
+              </p>
+            )}
+          </div>
           <ExternalLinksList
             amazonBooksId={id_amazon ? id_amazon[0] : ''}
             googleBooksId={id_google ? id_google[0] : ''}

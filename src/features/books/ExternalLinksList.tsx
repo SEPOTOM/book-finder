@@ -7,12 +7,13 @@ const ExternalLinksList = ({
   openLibraryId,
 }: ExternalLinksListProps) => {
   return (
-    <ul>
+    <ul className="flex flex-col items-end gap-y-1">
       <li>
         <a
           href={`https://openlibrary.org${openLibraryId}`}
           target="_blank"
           rel="noreferrer"
+          className="font-medium italic text-blue-900 visited:text-purple-600 underline"
         >
           View on Open Library
         </a>
@@ -23,6 +24,7 @@ const ExternalLinksList = ({
             href={`https://books.google.com/books?id=${googleBooksId}`}
             target="_blank"
             rel="noreferrer"
+            className="font-medium italic text-blue-900 visited:text-purple-600 underline"
           >
             View on Google Books
           </a>
@@ -34,6 +36,7 @@ const ExternalLinksList = ({
             href={`https://www.amazon.com/dp/${amazonBooksId}`}
             target="_blank"
             rel="noreferrer"
+            className="font-medium italic text-blue-900 visited:text-purple-600 underline"
           >
             View on Amazon Books
           </a>
@@ -45,6 +48,7 @@ const ExternalLinksList = ({
             href={`https://librivox.org/${libriVoxId}`}
             target="_blank"
             rel="noreferrer"
+            className="font-medium italic text-blue-900 visited:text-purple-600 underline"
           >
             View on LibriVox
           </a>

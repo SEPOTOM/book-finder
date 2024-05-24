@@ -31,7 +31,7 @@ const App = () => {
       </header>
       <main className="grow flex flex-col">
         {searchQuery === '' ? (
-          <p className="flex justify-center items-center h-full font-light text-3xl italic">
+          <p className="flex justify-center items-center h-full font-light text-2xl mob:text-3xl italic">
             Search results will be here
           </p>
         ) : (

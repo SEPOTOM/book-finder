@@ -28,7 +28,7 @@ const BookItemsSet = ({
 
   if (isFetching) {
     return (
-      <li className="grow self-center text-3xl font-bold text-center">
+      <li className="grow self-center mt-6 text-3xl font-bold text-center">
         Loading...
       </li>
     );
