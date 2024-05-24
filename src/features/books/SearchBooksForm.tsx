@@ -25,7 +25,7 @@ const SearchBooksForm = ({
     <form
       role="search"
       onSubmit={handleFormSubmit}
-      className="flex items-end gap-x-2 px-3"
+      className="flex flex-wrap gap-2 px-3"
     >
       <input
         type="search"
@@ -34,19 +34,24 @@ const SearchBooksForm = ({
         onChange={(e: ChangeEvent<HTMLInputElement>) =>
           setInputValue(e.currentTarget.value)
         }
-        className="grow min-w-72 px-2 py-1 text-xl border-2 border-black rounded-md outline-offset-4"
+        className="grow px-2 py-1 mob:min-w-[280px] text-xl border-2 border-black rounded-md outline-offset-4"
       />
       <select
         value={selectValue}
         onChange={(e: ChangeEvent<HTMLSelectElement>) =>
           setSelectValue(e.currentTarget.value as SearchTypes)
         }
+        className="basis-full mob:basis-auto order-1 mob:order-none px-2 py-1 text-lg border-2 border-black rounded-md"
       >
         <option value="q">Default</option>
         <option value="title">Title</option>
         <option value="author">Author</option>
       </select>
-      <button type="submit" aria-label="Search" className="pb-[2px]">
+      <button
+        type="submit"
+        aria-label="Search"
+        className="transition-transform hover:scale-110 active:scale-90"
+      >
         <MagnifyingGlassIcon width={36} height={36} />
       </button>
     </form>

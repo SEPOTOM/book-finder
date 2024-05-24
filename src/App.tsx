@@ -22,7 +22,7 @@ const App = () => {
 
   return (
     <Provider store={store}>
-      <header className="flex justify-center py-6 sm:py-12">
+      <header className="flex justify-center py-6 sm:py-9">
         <SearchBooksForm
           searchQuery={searchQuery}
           searchType={searchType}
