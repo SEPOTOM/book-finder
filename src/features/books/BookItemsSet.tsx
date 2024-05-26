@@ -34,6 +34,14 @@ const BookItemsSet = ({
     );
   }
 
+  if (booksIds.length === 0 && offset === 0) {
+    return (
+      <li className="grow self-center text-2xl mob:text-3xl font-bold text-center">
+        No books were found
+      </li>
+    );
+  }
+
   return booksIds.map((bookId) => (
     <BookItem
       bookId={String(bookId)}
