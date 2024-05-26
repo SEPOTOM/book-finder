@@ -6,7 +6,7 @@ import { apiSlice } from '../api/apiSlice';
 
 import { BookResponse, SearchBooksResponse, SearchParams } from './types';
 
-const BOOKS_FOR_SEARCH_AMOUNT = 12;
+import { BOOKS_FOR_SEARCH_AMOUNT } from './consts';
 
 const booksAdapter = createEntityAdapter({
   selectId: (book: BookResponse) => book.key,

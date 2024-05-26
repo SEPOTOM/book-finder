@@ -1,0 +1,1 @@
+export const BOOKS_FOR_SEARCH_AMOUNT = 12;
