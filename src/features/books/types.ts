@@ -51,3 +51,8 @@ export interface SearchParams {
   type: SearchTypes;
   offset: number;
 }
+
+export interface FetchError {
+  status?: string;
+  error?: string;
+}
