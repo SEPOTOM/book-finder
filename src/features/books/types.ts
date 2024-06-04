@@ -53,6 +53,12 @@ export interface ExternalLinkProps {
   href: string;
 }
 
+export interface FetchErrorItemProps {
+  offset: number;
+  fetchError: FetchError;
+  onRetry: () => void;
+}
+
 export interface SearchParams {
   query: string;
   type: SearchTypes;
