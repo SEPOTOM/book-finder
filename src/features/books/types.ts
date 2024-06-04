@@ -59,6 +59,12 @@ export interface FetchErrorItemProps {
   onRetry: () => void;
 }
 
+export interface ButtonProps {
+  children: ReactNode;
+  onClick: () => void;
+  className?: string;
+}
+
 export interface SearchParams {
   query: string;
   type: SearchTypes;

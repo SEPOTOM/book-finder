@@ -3,6 +3,8 @@ import {
   selectIsSearchBooksFetching,
 } from './booksSlice';
 
+import Button from './Button';
+
 import { useAppSelector } from '../../common/hooks';
 
 import { LoadMoreButtonProps } from './types';
@@ -24,13 +26,9 @@ const LoadMoreButton = ({
   return (
     !areBooksLoading &&
     lastSearchedBooksIds.length === BOOKS_FOR_SEARCH_AMOUNT && (
-      <button
-        type="button"
-        onClick={onClick}
-        className="sm:w-56 mx-3 sm:mx-auto mt-3 py-2 text-xl border-2 border-black rounded-md focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-black cursor-pointer transition-transform hover:scale-110 active:scale-90"
-      >
+      <Button onClick={onClick} className="sm:w-56 mt-3">
         Load more
-      </button>
+      </Button>
     )
   );
 };
