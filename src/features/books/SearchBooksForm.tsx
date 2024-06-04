@@ -34,14 +34,14 @@ const SearchBooksForm = ({
         onChange={(e: ChangeEvent<HTMLInputElement>) =>
           setInputValue(e.currentTarget.value)
         }
-        className="grow px-2 py-1 mob:min-w-[280px] text-xl border-2 border-black rounded-md outline-offset-4"
+        className="grow px-2 py-1 mob:min-w-[280px] text-xl border-2 border-black rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-black"
       />
       <select
         value={selectValue}
         onChange={(e: ChangeEvent<HTMLSelectElement>) =>
           setSelectValue(e.currentTarget.value as SearchTypes)
         }
-        className="basis-full mob:basis-auto order-1 mob:order-none px-2 py-1 text-lg border-2 border-black rounded-md"
+        className="basis-full mob:basis-auto order-1 mob:order-none px-2 py-1 text-lg border-2 border-black rounded-md focus:ring-2 focus:ring-offset-2 focus:ring-black"
       >
         <option value="q">Default</option>
         <option value="title">Title</option>
@@ -50,7 +50,7 @@ const SearchBooksForm = ({
       <button
         type="submit"
         aria-label="Search"
-        className="transition-transform hover:scale-110 active:scale-90"
+        className="focus-visible:rounded-md focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-black transition-transform hover:scale-110 active:scale-90"
       >
         <MagnifyingGlassIcon width={36} height={36} />
       </button>

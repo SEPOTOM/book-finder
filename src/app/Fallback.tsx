@@ -13,7 +13,7 @@ const Fallback = ({ error, resetErrorBoundary }: FallbackProps) => {
       <button
         type="button"
         onClick={resetErrorBoundary}
-        className="p-2 text-lg md:text-xl border-2 border-black rounded-md cursor-pointer transition-transform hover:scale-110 active:scale-90"
+        className="p-2 text-lg md:text-xl border-2 border-black rounded-md focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-black cursor-pointer transition-transform hover:scale-110 active:scale-90"
       >
         Try again
       </button>

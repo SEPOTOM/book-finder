@@ -13,7 +13,7 @@ const ExternalLinksList = ({
           href={`https://openlibrary.org${openLibraryId}`}
           target="_blank"
           rel="noreferrer"
-          className="font-medium italic text-blue-900 visited:text-purple-600 underline"
+          className="font-medium italic text-blue-900 visited:text-purple-600 underline focus:rounded-sm focus:outline-2 focus:outline-offset-4 focus:outline-blue-900 visited:focus:outline-purple-600"
         >
           View on Open Library
         </a>
@@ -24,7 +24,7 @@ const ExternalLinksList = ({
             href={`https://books.google.com/books?id=${googleBooksId}`}
             target="_blank"
             rel="noreferrer"
-            className="font-medium italic text-blue-900 visited:text-purple-600 underline"
+            className="font-medium italic text-blue-900 visited:text-purple-600 underline focus:rounded-sm focus:outline-2 focus:outline-offset-4 focus:outline-blue-900 visited:focus:outline-purple-600"
           >
             View on Google Books
           </a>
@@ -36,7 +36,7 @@ const ExternalLinksList = ({
             href={`https://www.amazon.com/dp/${amazonBooksId}`}
             target="_blank"
             rel="noreferrer"
-            className="font-medium italic text-blue-900 visited:text-purple-600 underline"
+            className="font-medium italic text-blue-900 visited:text-purple-600 underline focus:rounded-sm focus:outline-2 focus:outline-offset-4 focus:outline-blue-900 visited:focus:outline-purple-600"
           >
             View on Amazon Books
           </a>
@@ -48,7 +48,7 @@ const ExternalLinksList = ({
             href={`https://librivox.org/${libriVoxId}`}
             target="_blank"
             rel="noreferrer"
-            className="font-medium italic text-blue-900 visited:text-purple-600 underline"
+            className="font-medium italic text-blue-900 visited:text-purple-600 underline focus:rounded-sm focus:outline-2 focus:outline-offset-4 focus:outline-blue-900 visited:focus:outline-purple-600"
           >
             View on LibriVox
           </a>
