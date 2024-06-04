@@ -1,3 +1,5 @@
+import { ReactNode } from 'react';
+
 export type SearchTypes = 'q' | 'title' | 'author';
 
 export interface SearchBooksResponse {
@@ -44,6 +46,11 @@ export interface ExternalLinksListProps {
 export interface LoadMoreButtonProps {
   lastSetSearchParams: SearchParams;
   onClick: () => void;
+}
+
+export interface ExternalLinkProps {
+  children: ReactNode;
+  href: string;
 }
 
 export interface SearchParams {

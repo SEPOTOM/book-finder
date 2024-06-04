@@ -1,3 +1,5 @@
+import ExternalLink from './ExternalLink';
+
 import { ExternalLinksListProps } from './types';
 
 const ExternalLinksList = ({
@@ -9,49 +11,31 @@ const ExternalLinksList = ({
   return (
     <ul className="flex flex-col items-end gap-y-1">
       <li>
-        <a
-          href={`https://openlibrary.org${openLibraryId}`}
-          target="_blank"
-          rel="noreferrer"
-          className="font-medium italic text-blue-900 visited:text-purple-600 underline focus:rounded-sm focus:outline-2 focus:outline-offset-4 focus:outline-blue-900 visited:focus:outline-purple-600"
-        >
+        <ExternalLink href={`https://openlibrary.org${openLibraryId}`}>
           View on Open Library
-        </a>
+        </ExternalLink>
       </li>
       {googleBooksId !== '' && (
         <li>
-          <a
+          <ExternalLink
             href={`https://books.google.com/books?id=${googleBooksId}`}
-            target="_blank"
-            rel="noreferrer"
-            className="font-medium italic text-blue-900 visited:text-purple-600 underline focus:rounded-sm focus:outline-2 focus:outline-offset-4 focus:outline-blue-900 visited:focus:outline-purple-600"
           >
             View on Google Books
-          </a>
+          </ExternalLink>
         </li>
       )}
       {amazonBooksId !== '' && (
         <li>
-          <a
-            href={`https://www.amazon.com/dp/${amazonBooksId}`}
-            target="_blank"
-            rel="noreferrer"
-            className="font-medium italic text-blue-900 visited:text-purple-600 underline focus:rounded-sm focus:outline-2 focus:outline-offset-4 focus:outline-blue-900 visited:focus:outline-purple-600"
-          >
+          <ExternalLink href={`https://www.amazon.com/dp/${amazonBooksId}`}>
             View on Amazon Books
-          </a>
+          </ExternalLink>
         </li>
       )}
       {libriVoxId !== '' && (
         <li>
-          <a
-            href={`https://librivox.org/${libriVoxId}`}
-            target="_blank"
-            rel="noreferrer"
-            className="font-medium italic text-blue-900 visited:text-purple-600 underline focus:rounded-sm focus:outline-2 focus:outline-offset-4 focus:outline-blue-900 visited:focus:outline-purple-600"
-          >
+          <ExternalLink href={`https://librivox.org/${libriVoxId}`}>
             View on LibriVox
-          </a>
+          </ExternalLink>
         </li>
       )}
     </ul>
