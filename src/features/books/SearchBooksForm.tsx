@@ -21,6 +21,8 @@ const SearchBooksForm = ({
     onSubmit(inputValue, selectValue);
   };
 
+  const inputLabel = `Search for books ${selectValue === 'q' ? '' : `by ${selectValue}`}`;
+
   return (
     <form
       role="search"
@@ -29,12 +31,13 @@ const SearchBooksForm = ({
     >
       <input
         type="search"
-        placeholder={`Search for books ${selectValue === 'q' ? '' : `by ${selectValue}`}`}
+        placeholder={inputLabel}
         value={inputValue}
         onChange={(e: ChangeEvent<HTMLInputElement>) =>
           setInputValue(e.currentTarget.value)
         }
         className="grow px-2 py-1 mob:min-w-[280px] text-xl border-2 border-black rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-black"
+        aria-label={inputLabel}
       />
       <select
         value={selectValue}
@@ -42,6 +45,7 @@ const SearchBooksForm = ({
           setSelectValue(e.currentTarget.value as SearchTypes)
         }
         className="basis-full mob:basis-auto order-1 mob:order-none px-2 py-1 text-lg border-2 border-black rounded-md focus:ring-2 focus:ring-offset-2 focus:ring-black"
+        aria-label="Select search type"
       >
         <option value="q">Default</option>
         <option value="title">Title</option>
