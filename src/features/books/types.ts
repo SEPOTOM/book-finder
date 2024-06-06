@@ -44,7 +44,8 @@ export interface ExternalLinksListProps {
 }
 
 export interface LoadMoreButtonProps {
-  lastSetSearchParams: SearchParams;
+  lastSearchParamsSet: SearchParams;
+  areBooksLoading: boolean;
   onClick: () => void;
 }
 

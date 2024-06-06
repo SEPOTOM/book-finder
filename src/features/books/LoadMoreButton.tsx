@@ -1,7 +1,4 @@
-import {
-  createSearchedBooksSelectors,
-  selectIsSearchBooksFetching,
-} from './booksSlice';
+import { createSearchedBooksSelectors } from './booksSlice';
 
 import Button from './Button';
 
@@ -12,15 +9,12 @@ import { LoadMoreButtonProps } from './types';
 import { BOOKS_FOR_SEARCH_AMOUNT } from './consts';
 
 const LoadMoreButton = ({
-  lastSetSearchParams,
+  lastSearchParamsSet,
+  areBooksLoading,
   onClick,
 }: LoadMoreButtonProps) => {
-  const areBooksLoading = useAppSelector((state) =>
-    selectIsSearchBooksFetching(state, lastSetSearchParams)
-  );
-
   const { selectSearchedBooksIds } =
-    createSearchedBooksSelectors(lastSetSearchParams);
+    createSearchedBooksSelectors(lastSearchParamsSet);
   const lastSearchedBooksIds = useAppSelector(selectSearchedBooksIds);
 
   return (
