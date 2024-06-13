@@ -1,35 +1,41 @@
 import { useState } from 'react';
 
-import { selectIsSearchBooksFetching } from './booksSlice';
+import { useSearchBooksQuery } from './booksSlice';
 
 import SearchBooksForm from './SearchBooksForm';
-import BookItemsSet from './BookItemsSet';
 import LoadMoreButton from './LoadMoreButton';
+import BookItem from './BookItem';
+import FetchErrorItem from './FetchErrorItem';
 
-import { useAppSelector } from '../../common/hooks';
-
-import { SearchTypes } from './types';
+import { BookResponse, FetchError, SearchTypes } from './types';
 
 const BooksLayout = () => {
   const [searchQuery, setSearchQuery] = useState('');
   const [searchType, setSearchType] = useState<SearchTypes>('q');
-  const [searchOffsets, setSearchOffsets] = useState<number[]>([]);
-
-  const handleSearchFormSubmit = (newQuery: string, newType: SearchTypes) => {
-    setSearchQuery(newQuery);
-    setSearchType(newType);
-    setSearchOffsets([0]);
-  };
+  const [searchOffset, setSearchOffset] = useState(0);
+  const [books, setBooks] = useState<BookResponse[]>([]);
 
   const lastSearchParamsSet = {
     query: searchQuery,
     type: searchType,
-    offset: searchOffsets[searchOffsets.length - 1],
+    offset: searchOffset,
   };
 
-  const areBooksLoading = useAppSelector((state) =>
-    selectIsSearchBooksFetching(state, lastSearchParamsSet)
-  );
+  const {
+    isFetching,
+    isError,
+    isSuccess,
+    error,
+    data = [],
+    refetch,
+  } = useSearchBooksQuery(lastSearchParamsSet);
+  const fetchError = error as FetchError;
+
+  const handleSearchFormSubmit = (newQuery: string, newType: SearchTypes) => {
+    setSearchQuery(newQuery);
+    setSearchType(newType);
+    setSearchOffset(0);
+  };
 
   return (
     <>
@@ -48,17 +54,17 @@ const BooksLayout = () => {
         ) : (
           <>
             <ul className="grow flex flex-wrap">
-              {searchOffsets.map((searchOffset) => (
-                <BookItemsSet
-                  searchQuery={searchQuery}
-                  searchType={searchType}
-                  offset={searchOffset}
-                  key={searchOffset}
-                />
-              ))}
-              <li></li>
+              {books
+                .concat(isFetching || isError ? [] : data || [])
+                .map((book) => (
+                  <BookItem
+                    book={book}
+                    searchParams={lastSearchParamsSet}
+                    key={book.key}
+                  />
+                ))}
             </ul>
-            {areBooksLoading && (
+            {isFetching && (
               <p
                 role="status"
                 className="grow self-center mt-6 text-3xl font-bold text-center"
@@ -66,13 +72,33 @@ const BooksLayout = () => {
                 Loading...
               </p>
             )}
-            <LoadMoreButton
-              lastSearchParamsSet={lastSearchParamsSet}
-              areBooksLoading={areBooksLoading}
-              onClick={() =>
-                setSearchOffsets([...searchOffsets, searchOffsets.length])
-              }
-            />
+            {isError ? (
+              <FetchErrorItem
+                offset={searchOffset}
+                fetchError={fetchError}
+                onRetry={() => refetch()}
+              />
+            ) : (
+              <LoadMoreButton
+                lastLoadedBooksQuantity={data?.length || 0}
+                areBooksLoading={isFetching}
+                onClick={() => {
+                  if (!isError) {
+                    setBooks([...books, ...data]);
+                  }
+                  setSearchOffset(searchOffset + 1);
+                }}
+              />
+            )}
+            {data?.length === 0 &&
+              books.length === 0 &&
+              searchOffset === 0 &&
+              !isFetching &&
+              isSuccess && (
+                <p className="flex justify-center items-center h-full text-2xl mob:text-3xl font-bold text-center">
+                  No books were found
+                </p>
+              )}
           </>
         )}
       </main>

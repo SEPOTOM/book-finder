@@ -20,7 +20,7 @@ export interface BookResponse {
 }
 
 export interface BookItemProps {
-  bookId: string;
+  book: BookResponse;
   searchParams: SearchParams;
 }
 
@@ -44,7 +44,7 @@ export interface ExternalLinksListProps {
 }
 
 export interface LoadMoreButtonProps {
-  lastSearchParamsSet: SearchParams;
+  lastLoadedBooksQuantity: number;
   areBooksLoading: boolean;
   onClick: () => void;
 }

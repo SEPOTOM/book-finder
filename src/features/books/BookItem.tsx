@@ -1,19 +1,14 @@
 import clsx from 'clsx';
 
-import { createSearchedBooksSelectors } from './booksSlice';
-
 import ExternalLinksList from './ExternalLinksList';
 
-import { useAppSelector } from '../../common/hooks';
 import { useAuthorNames, usePublishDate } from './hooks';
 
 import { BookItemProps } from './types';
 
 import ImagePlaceholderSrc from '/img-placeholder.png';
 
-const BookItem = ({ bookId, searchParams }: BookItemProps) => {
-  const { selectSearchedBookById } = createSearchedBooksSelectors(searchParams);
-
+const BookItem = ({ book, searchParams }: BookItemProps) => {
   const {
     cover_edition_key,
     title,
@@ -24,7 +19,8 @@ const BookItem = ({ bookId, searchParams }: BookItemProps) => {
     id_amazon,
     id_google,
     id_librivox,
-  } = useAppSelector((state) => selectSearchedBookById(state, bookId));
+    key,
+  } = book;
 
   const { authorName, authorAlternativeName } = useAuthorNames(
     searchParams,
@@ -81,7 +77,7 @@ const BookItem = ({ bookId, searchParams }: BookItemProps) => {
             amazonBooksId={id_amazon ? id_amazon[0] : ''}
             googleBooksId={id_google ? id_google[0] : ''}
             libriVoxId={id_librivox ? id_librivox[0] : ''}
-            openLibraryId={bookId}
+            openLibraryId={key}
           />
         </div>
       </div>
