@@ -5,7 +5,7 @@ import { useSearchBooksQuery } from './booksSlice';
 import SearchBooksForm from './SearchBooksForm';
 import LoadMoreButton from './LoadMoreButton';
 import BookItem from './BookItem';
-import FetchErrorItem from './FetchErrorItem';
+import FetchErrorMessage from './FetchErrorMessage';
 
 import { BookResponse, FetchError, SearchTypes } from './types';
 
@@ -73,7 +73,7 @@ const BooksLayout = () => {
               </p>
             )}
             {isError ? (
-              <FetchErrorItem
+              <FetchErrorMessage
                 offset={searchOffset}
                 fetchError={fetchError}
                 onRetry={() => refetch()}

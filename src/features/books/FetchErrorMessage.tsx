@@ -2,13 +2,13 @@ import clsx from 'clsx';
 
 import Button from './Button';
 
-import { FetchErrorItemProps } from './types';
+import { FetchErrorMessageProps } from './types';
 
-const FetchErrorItem = ({
+const FetchErrorMessage = ({
   offset,
   fetchError,
   onRetry,
-}: FetchErrorItemProps) => {
+}: FetchErrorMessageProps) => {
   return (
     <div
       className={clsx(
@@ -35,4 +35,4 @@ const FetchErrorItem = ({
   );
 };
 
-export default FetchErrorItem;
+export default FetchErrorMessage;

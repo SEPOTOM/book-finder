@@ -54,7 +54,7 @@ export interface ExternalLinkProps {
   href: string;
 }
 
-export interface FetchErrorItemProps {
+export interface FetchErrorMessageProps {
   offset: number;
   fetchError: FetchError;
   onRetry: () => void;
