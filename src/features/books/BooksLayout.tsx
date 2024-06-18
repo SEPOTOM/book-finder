@@ -32,9 +32,17 @@ const BooksLayout = () => {
   const fetchError = error as FetchError;
 
   const handleSearchFormSubmit = (newQuery: string, newType: SearchTypes) => {
+    if (newQuery === searchQuery && newType === searchType && isSuccess) {
+      return;
+    }
+
     setSearchQuery(newQuery);
     setSearchType(newType);
     setSearchOffset(0);
+
+    if (isError) {
+      refetch();
+    }
   };
 
   return (

@@ -13,11 +13,6 @@ const SearchBooksForm = ({
 
   const handleFormSubmit = (e: FormEvent) => {
     e.preventDefault();
-
-    if (inputValue === searchQuery && selectValue === searchType) {
-      return;
-    }
-
     onSubmit(inputValue, selectValue);
   };
 
