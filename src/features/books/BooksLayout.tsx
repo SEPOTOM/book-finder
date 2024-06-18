@@ -62,15 +62,13 @@ const BooksLayout = () => {
         ) : (
           <>
             <ul className="grow flex flex-wrap">
-              {books
-                .concat(isFetching || isError ? [] : data || [])
-                .map((book) => (
-                  <BookItem
-                    book={book}
-                    searchParams={lastSearchParamsSet}
-                    key={book.key}
-                  />
-                ))}
+              {books.concat(isFetching || isError ? [] : data).map((book) => (
+                <BookItem
+                  book={book}
+                  searchParams={lastSearchParamsSet}
+                  key={book.key}
+                />
+              ))}
             </ul>
             {isFetching && (
               <p
