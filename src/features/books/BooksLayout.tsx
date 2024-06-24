@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import clsx from 'clsx';
 
 import { useSearchBooksQuery } from './booksSlice';
 
@@ -54,58 +55,66 @@ const BooksLayout = () => {
           onSubmit={handleSearchFormSubmit}
         />
       </header>
-      <main aria-live="polite" className="grow flex flex-col">
-        {searchQuery === '' ? (
-          <p className="flex justify-center items-center h-full font-light text-2xl mob:text-3xl italic">
-            Search results will be here
-          </p>
-        ) : (
-          <>
-            <ul className="grow flex flex-wrap">
-              {books.concat(isFetching || isError ? [] : data).map((book) => (
-                <BookItem
-                  book={book}
-                  searchParams={lastSearchParamsSet}
-                  key={book.key}
-                />
-              ))}
-            </ul>
-            {isFetching && (
-              <p
-                role="status"
-                className="grow self-center mt-6 text-3xl font-bold text-center"
-              >
-                Loading...
-              </p>
-            )}
-            {isError ? (
-              <FetchErrorMessage
-                offset={searchOffset}
-                fetchError={fetchError}
-                onRetry={() => refetch()}
-              />
-            ) : (
-              <LoadMoreButton
-                lastLoadedBooksQuantity={data?.length || 0}
-                areBooksLoading={isFetching}
-                onClick={() => {
-                  if (!isError) {
-                    setBooks([...books, ...data]);
-                  }
-                  setSearchOffset(searchOffset + 1);
-                }}
-              />
-            )}
-            {data?.length === 0 &&
-              books.length === 0 &&
-              searchOffset === 0 &&
-              !isFetching &&
-              isSuccess && (
-                <p className="flex justify-center items-center h-full text-2xl mob:text-3xl font-bold text-center">
-                  No books were found
+      <main className="grow flex flex-col">
+        <div
+          aria-live="polite"
+          className={clsx('flex flex-col', {
+            grow: !isError,
+          })}
+        >
+          {searchQuery === '' ? (
+            <p className="flex justify-center items-center h-full font-light text-2xl mob:text-3xl italic">
+              Search results will be here
+            </p>
+          ) : (
+            <>
+              <ul className="grow flex flex-wrap">
+                {books.concat(isFetching || isError ? [] : data).map((book) => (
+                  <BookItem
+                    book={book}
+                    searchParams={lastSearchParamsSet}
+                    key={book.key}
+                  />
+                ))}
+              </ul>
+              {isFetching && (
+                <p
+                  role="status"
+                  className="grow self-center mt-6 text-3xl font-bold text-center"
+                >
+                  Loading...
                 </p>
               )}
-          </>
+              {!isError && (
+                <LoadMoreButton
+                  lastLoadedBooksQuantity={data?.length || 0}
+                  areBooksLoading={isFetching}
+                  onClick={() => {
+                    if (!isError) {
+                      setBooks([...books, ...data]);
+                    }
+                    setSearchOffset(searchOffset + 1);
+                  }}
+                />
+              )}
+              {data?.length === 0 &&
+                books.length === 0 &&
+                searchOffset === 0 &&
+                !isFetching &&
+                isSuccess && (
+                  <p className="flex justify-center items-center h-full text-2xl mob:text-3xl font-bold text-center">
+                    No books were found
+                  </p>
+                )}
+            </>
+          )}
+        </div>
+        {isError && (
+          <FetchErrorMessage
+            offset={searchOffset}
+            fetchError={fetchError}
+            onRetry={() => refetch()}
+          />
         )}
       </main>
       <footer className="flex justify-center py-8">

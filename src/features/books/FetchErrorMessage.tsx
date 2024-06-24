@@ -11,6 +11,7 @@ const FetchErrorMessage = ({
 }: FetchErrorMessageProps) => {
   return (
     <div
+      role="alert"
       className={clsx(
         'grow flex flex-col justify-center items-center max-w-[1000px] mx-auto px-3 font-bold text-xl sm:text-3xl text-center',
         {
