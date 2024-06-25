@@ -40,6 +40,7 @@ const BooksLayout = () => {
     setSearchQuery(newQuery);
     setSearchType(newType);
     setSearchOffset(0);
+    setBooks([]);
 
     if (isError) {
       refetch();
