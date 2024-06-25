@@ -13,7 +13,10 @@ const SearchBooksForm = ({
 
   const handleFormSubmit = (e: FormEvent) => {
     e.preventDefault();
-    onSubmit(inputValue, selectValue);
+
+    if (inputValue !== '') {
+      onSubmit(inputValue, selectValue);
+    }
   };
 
   const inputLabel = `Search for books ${selectValue === 'q' ? '' : `by ${selectValue}`}`;
