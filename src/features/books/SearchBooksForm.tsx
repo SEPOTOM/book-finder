@@ -42,7 +42,7 @@ const SearchBooksForm = ({
         onChange={(e: ChangeEvent<HTMLSelectElement>) =>
           setSelectValue(e.currentTarget.value as SearchTypes)
         }
-        className="basis-full mob:basis-auto order-1 mob:order-none px-2 py-1 text-lg border-2 border-black rounded-md focus:ring-2 focus:ring-offset-2 focus:ring-black"
+        className="basis-full mob:basis-auto order-1 mob:order-none px-2 py-1 text-lg bg-white border-2 border-black rounded-md focus:ring-2 focus:ring-offset-2 focus:ring-black focus-visible:outline-none"
         aria-label="Select search type"
       >
         <option value="q">Default</option>
